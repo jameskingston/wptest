@@ -45,3 +45,4 @@ For a timestamped track that needs a manual crossing at the default sync gate, s
 The map uses [Leaflet 1.9.4](https://leafletjs.com/reference-1.9.4.html) and Esri World Imagery. Imagery attribution is shown on the map; review [Esri's World Imagery terms](https://goto.arcgisonline.com/maps/World_Imagery) and [data attribution guidance](https://www.esri.com/en-us/legal/terms/data-attributions).
 
 This public site includes participant GPX tracks and precise route locations. The participants have approved their publication.
+
