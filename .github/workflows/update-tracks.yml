@@ -1,18 +1,20 @@
-name: Update track catalogs
+name: Deploy site to GitHub Pages
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
-  group: update-tracks-main
+  group: pages
   cancel-in-progress: false
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,10 +27,15 @@ jobs:
         run: python scripts/update_tracks.py
       - name: Validate manifest and GPX files
         run: python scripts/validate_tracks.py
+      - name: Stage site files
+        run: |
+          mkdir _site
+          cp -R index.html app.js styles.css colors.js catalog.json by-date by-racer _site/
+      - uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./
+          path: _site
   deploy:
     environment:
       name: github-pages
